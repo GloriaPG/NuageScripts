@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div>
+      <h2>Virtual Service Platform</h2>
+      <h3>{{vsp.name}}</h3>
+    </div>
+    <div>
+      {% for vsc in vsp.vscs %}
+        <h3>VSC: {{vsc.name}}</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>ID</th>
+              <th>Status</th>
+              <th>Average Memory Usage</th>
+              <th>Peak Memory Usage</th>
+              <th>Average CPU Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{vsc.name}}</td>
+              <td>{{vsc.ID}}</td>
+              <td>{{vsc.status}}</td>
+              <td>{{vsc.averageMemoryUsage}}</td>
+              <td>{{vsc.peakMemoryUsage}}</td>
+              <td>{{vsc.currentCPUUsage}}</td>
+              <td>{{vsc.averageCPUUsage}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        {% for vrs in vsc.vrss %}
+	<h5>VRS</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>ID</th>
+              <th>Address</th>
+              <th>Status</th>
+              <th>Uptime</th>
+              <th>Average Memory Usage</th>
+              <th>Peak Memory Usage</th>
+              <th>Average CPU Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{vrs.name}}</td>
+              <td>{{vrs.ID}}</td>
+              <td>{{vrs.address}}</td>
+              <td>{{vrs.status}}</td>
+              <td>{{vrs.uptime}}</td>
+              <td>{{vrs.averageMemoryUsage}}</td>
+              <td>{{vrs.peakMemoryUsage}}</td>
+              <td>{{vrs.currentCPUUsage}}</td>
+              <td>{{vrs.averageCPUUsage}}</td>
+            </tr>
+          </tbody>
+        </table>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>

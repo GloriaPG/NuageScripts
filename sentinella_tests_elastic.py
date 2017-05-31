@@ -27,14 +27,50 @@ for hit in response['hits']['hits']:
 URL = 'http://192.168.0.24:9200'
 
 print '#' * 1000
-print 'DPI SLA STATS'
+print 'Indices Nuage'
 
-DPI_sla_stats= requests.get(URL  + "/nuage_dpi_slastats-2017-05-31/_search?pretty")
+indices= requests.get(URL  + "/_cat/indices?v")
 #print DPI_sla_stats.json()
-print json.dumps(DPI_sla_stats.json(), indent=4, sort_keys=True)
-print '$' * 1000
-print 'DPI FLOW STATS'
+print json.dumps(indices.json(), indent=4, sort_keys=True)
 
+
+print '#' * 1000
+print 'nuage_addressmap'
+request_api= requests.get(URL  + "/nuage_addressmap-2017-05-31/_search?pretty")
+#print DPI_sla_stats.json()
+print json.dumps(request_api.json(), indent=4, sort_keys=True)
+print '$' * 1000
+
+print '#' * 1000
+print 'nuage_vlan'
+request_api= requests.get(URL  + "/nuage_vlan-2017-05-31/_search?pretty")
+#print DPI_sla_stats.json()
+print json.dumps(request_api.json(), indent=4, sort_keys=True)
+print '$' * 1000
+
+print '#' * 1000
+print 'nuage_vport'
+request_api= requests.get(URL  + "/nuage_vport-2017-05-31/_search?pretty")
+#print DPI_sla_stats.json()
+print json.dumps(request_api.json(), indent=4, sort_keys=True)
+print '$' * 1000
+
+print '#' * 1000
+print 'nuage_vport'
+request_api= requests.get(URL  + "/nuage_vport-2017-05-31/_search?pretty")
+#print DPI_sla_stats.json()
+print json.dumps(request_api.json(), indent=4, sort_keys=True)
+print '$' * 1000
+
+print '#' * 1000
+print 'nuage_dpi_flowstats'
 DPI_flow_stats= requests.get(URL  + "/nuage_dpi_flowstats-2017-05-31/_search?pretty")
+#print DPI_flow_stats.json()
+print json.dumps(DPI_flow_stats.json(), indent=4, sort_keys=True)
+print '$' * 1000
+
+print '#' * 1000
+print 'nuage_flow'
+DPI_flow_stats= requests.get(URL  + "/nuage_flow-2017-05-31/_search?pretty")
 #print DPI_flow_stats.json()
 print json.dumps(DPI_flow_stats.json(), indent=4, sort_keys=True)

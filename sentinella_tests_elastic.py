@@ -63,6 +63,13 @@ print json.dumps(request_api.json(), indent=4, sort_keys=True)
 print '$' * 1000
 
 print '#' * 1000
+print 'nuage_dpi_probestats'
+request_api= requests.get(URL  + "/nuage_dpi_probestats-2017-05-31/_search?pretty")
+#print DPI_sla_stats.json()
+print json.dumps(request_api.json(), indent=4, sort_keys=True)
+print '$' * 1000
+
+print '#' * 1000
 print 'nuage_dpi_flowstats'
 DPI_flow_stats= requests.get(URL  + "/nuage_dpi_flowstats-2017-05-31/_search?pretty")
 #print DPI_flow_stats.json()

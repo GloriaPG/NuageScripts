@@ -26,15 +26,6 @@ for hit in response['hits']['hits']:
 
 URL = 'http://192.168.0.24:9200'
 
-print '#' * 1000
-print 'Indices Nuage'
-
-indices= requests.get(URL  + "/_cat/indices?v")
-#print DPI_sla_stats.json()
-print json.dumps(indices.json(), indent=4, sort_keys=True)
-
-
-print '#' * 1000
 print 'nuage_addressmap'
 request_api= requests.get(URL  + "/nuage_addressmap-2017-05-31/_search?pretty")
 #print DPI_sla_stats.json()

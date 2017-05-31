@@ -1,8 +1,9 @@
 import requests
+import json
 from elasticsearch import Elasticsearch
 from datetime import datetime, timedelta
 
-client = Elasticsearch(['vsd1.sdn40r8.lab:9200'])
+client = Elasticsearch(['192.168.0.24:9200'])
 
 start = datetime.now() - timedelta(hours=24)
 end = datetime.now()
@@ -23,16 +24,17 @@ for hit in response['hits']['hits']:
  
 
 
-URL = 'http://vsd1.sdn40r8.lab:9200'
+URL = 'http://192.168.0.24:9200'
 
 print '#' * 1000
 print 'DPI SLA STATS'
 
 DPI_sla_stats= requests.get(URL  + "/nuage_dpi_slastats-2017-05-31/_search?pretty")
-print DPI_sla_stats.json()
-
+#print DPI_sla_stats.json()
+print json.dumps(DPI_sla_stats.json(), indent=4, sort_keys=True)
 print '$' * 1000
 print 'DPI FLOW STATS'
 
 DPI_flow_stats= requests.get(URL  + "/nuage_dpi_flowstats-2017-05-31/_search?pretty")
-print DPI_flow_stats.json()
+#print DPI_flow_stats.json()
+print json.dumps(DPI_flow_stats.json(), indent=4, sort_keys=True)

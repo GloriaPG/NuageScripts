@@ -14,8 +14,8 @@ import logging
 from vspk.utils import set_log_level
 
 # Auth vars
-vsd_ip = '192.168.0.20'
-api_url = "https://192.168.0.20:8443"
+vsd_ip = '147.75.69.37'
+api_url = "https://vsd1.sdn40r8.lab:8443"
 username = "csproot"
 password = "csproot"
 enterprise = "csp"
@@ -40,6 +40,9 @@ def start_csproot_session():
 
 
 def vsc_health(csproot):
+        print "DIR Object API Nuage"
+        print csproot.__dict__
+        print "++++++++++++++++++++++++++++++++++++++++++++++++++"
         for vsp in csproot.vsps.get():
             print "\n\n**********  VSP: %s **********" % vsp.name
             print vsp.to_dict()
@@ -72,10 +75,10 @@ def main():
 
     setup_logging()
     csproot = start_csproot_session()
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     vsc_health(csproot)
 
 if __name__ == "__main__":
    main()
-   import pdb; pdb.set_trace()
+   #import pdb; pdb.set_trace()
 

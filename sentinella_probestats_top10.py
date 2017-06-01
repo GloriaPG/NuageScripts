@@ -46,6 +46,7 @@ response = client.search(
 	        }
 	    }
 	  },
+	  "from" : 0, "size" : 10,
 	  "sort": [
 		    {
 		        "timestamp": "desc"

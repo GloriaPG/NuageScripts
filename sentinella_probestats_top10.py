@@ -36,12 +36,6 @@ response = client.search(
     body={
 	  "query": {
 	    "filtered": {
-	      "query": {
-	        "sort": [
-		        { "timestamp":   { "order": "desc" }},
-		        { "_score": { "order": "desc" }}
-	    	]
-	      },
 	      "filter" : {
 	            "bool" : {
 	                "must" : [
@@ -51,7 +45,12 @@ response = client.search(
 	            }
 	        }
 	    }
-	  }
+	  },
+	  "sort": [
+		    {
+		        "timestamp": "desc"
+		    }
+	    ]
 	}
 )
 

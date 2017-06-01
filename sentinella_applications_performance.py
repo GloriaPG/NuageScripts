@@ -24,11 +24,8 @@ response = client.search(
 	  "aggs": {
 	    "group_by_AppID": {
 	      "terms": {
-	        "field": "AppID.keyword"
-	      },
-	      "aggs" : {
-		    "hat_TotalMB" : { "sum" : { "field" : "TotalMB" } }
-		  }
+	        "field": "AppID"
+	      }
 	    }
 	  }
 	}

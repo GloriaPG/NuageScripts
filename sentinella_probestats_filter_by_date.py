@@ -36,7 +36,11 @@ response = client.search(
                 "interval" : "{0}".format(interval)
             }
         }
-      }
+      },
+      "sort" : [
+          {"timestamp" : {"order" : "desc"}}
+      ],
+      "from" : 0, "size" : 1
 	}
 )
 

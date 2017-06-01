@@ -34,12 +34,8 @@ response = client.search(
 response = client.search(
     index="nuage_dpi_probestats",
     body={
-	  "query": {
-	    "filtered": {
-	      "query": {
-	        "sort": { "timestamp": { "order": "desc" }}
-	      },
-	      "filter" : {
+	    "query" : {
+	        "bool" : {
 	            "bool" : {
 	                "must" : [
 	                    { "term" : { "SourceNSG" : "{0}".format(SourceNSG) } }, 
@@ -47,9 +43,12 @@ response = client.search(
 	                ]
 	            }
 	        }
-	    }
-	  }
-	}
+	    },
+	    "sort": [
+	        { "timestamp":   { "order": "desc" }},
+	        { "_score": { "order": "desc" }}
+	    ]
+    }
 )
 
 print json.dumps(response, indent=4, sort_keys=True)

@@ -14,16 +14,16 @@ response = client.search(
 	                "gte" : "now-5m"
 	            }
 	        },
-	        "constant_score" : { 
-		         "filter" : {
-		            "bool" : {
-		              "must" : {
-		                "term" : {"SourceNSG" : "{0}".format(SourceNSG)},
-		                "term" : {"SrcUplink" : "{0}".format(SrcUplink)} 
-		              }
-		            }
-		        }
-		    }
+	        "constant_score" : {
+	            "filter" : {
+	                 "bool" : {
+	                    "must" : [
+	                        { "term" : { "SourceNSG" : "{0}".format(SourceNSG) } }, 
+	                        { "term" : { "SrcUplink" : "{0}".format(SrcUplink) } } 
+	                    ]
+	                }
+	            }
+            }
 	    }
     }
 )

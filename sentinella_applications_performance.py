@@ -40,6 +40,7 @@ response = client.search(
 	      }
 	    }
 	}
-)
+      }
+    )
 
 print json.dumps(response, indent=4, sort_keys=True)

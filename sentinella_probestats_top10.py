@@ -4,14 +4,38 @@ from elasticsearch import Elasticsearch
 client = Elasticsearch(['192.168.0.24:9200'])
 
 SourceNSG = "nsg-branch1-2"
-SrcUplink = "port1"
+SrcUplink = "port2"
 
 response = client.search(
     index="nuage_dpi_probestats",
     body={
 	  "query": {
 	    "filtered": {
-	      "from" : 0, "size" : 10,
+	      "query": {
+	        "range" : {
+	            "timestamp" : {
+	                "gte" : "now-5m"
+	            }
+	        }
+	      },
+	      "filter" : {
+	            "bool" : {
+	                "must" : [
+	                    { "term" : { "SourceNSG" : "{0}".format(SourceNSG) } }, 
+	                    { "term" : { "SrcUplink" : "{0}".format(SrcUplink) } } 
+	                ]
+	            }
+	        }
+	    }
+	  }
+	}
+)
+
+response = client.search(
+    index="nuage_dpi_probestats",
+    body={
+	  "query": {
+	    "filtered": {
 	      "filter" : {
 	            "bool" : {
 	                "must" : [

@@ -59,19 +59,24 @@ response = client.search(
 	                        "field":"timestamp",
 	                        "interval":"1m"
 	                     },
-	                     "terms":{
-	                        "field":"Application",
-	                        "order":{
-	                           "Sum of MB":"desc"
-	                        }
-	                     },
 	                     "aggs":{
-	                        "Sum of MB":{
-	                           "sum":{
-	                              "field":"TotalMB"
-	                           }
+	                        "using":{
+	                           "terms":{
+			                        "field":"Application",
+			                        "order":{
+			                           "Sum of MB":"desc"
+			                        }
+			                     },
+			                     "aggs":{
+			                        "Sum of MB":{
+			                           "sum":{
+			                              "field":"TotalMB"
+			                           }
+			                        }
+			                    }
 	                        }
-	                     }
+	                    }
+	              
 	                  }
 	               }
 	            }

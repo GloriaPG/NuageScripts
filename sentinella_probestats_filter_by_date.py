@@ -5,7 +5,11 @@ from datetime import datetime, timedelta
 
 client = Elasticsearch(['192.168.0.24:9200'])
 
-less_five_minutes = datetime.now() - timedelta(minutes=15)
+datetime_less_five_minutes = datetime.now() - timedelta(minutes=5)
+epochtime_less_five_minutes = int(datetime_less_five_minutes.strftime("%s")) * 1000
+
+datetime_lte = datetime.now()
+epochtime_lte = int(datetime_lte.strftime("%s")) * 1000
 
 response = client.search(
     index="nuage_dpi_probestats",
@@ -13,7 +17,7 @@ response = client.search(
 	    "query": {
 	        "range" : {
 	            "timestamp" : {
-	                "gte" : "2017-05-31 18:49:32.365950",
+	                "gte" : "now-5m"
 	            }
 	        }
 	    }

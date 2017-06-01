@@ -3,8 +3,8 @@ from elasticsearch import Elasticsearch
 
 client = Elasticsearch(['192.168.0.24:9200'])
 
-DestinationNSG = "nsg-branch1-2"
-DstUplink = "port2"
+DestinationNSG = "nsg-branch2-1"
+DstUplink = "port1"
 
 response = client.search(
     index="nuage_dpi_flowstats",
@@ -14,7 +14,7 @@ response = client.search(
 	      "query": {
 	        "range" : {
 	            "timestamp" : {
-	                "gte" : "now-24h"
+	                "gte" : "now-5m"
 	            }
 	        }
 	      },

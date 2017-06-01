@@ -55,6 +55,10 @@ response = client.search(
 	               },
 	               "aggs":{
 	                  "Application":{
+	                     "date_histogram":{
+	                        "field":"timestamp",
+	                        "interval":"1m"
+	                     },
 	                     "terms":{
 	                        "field":"Application",
 	                        "order":{

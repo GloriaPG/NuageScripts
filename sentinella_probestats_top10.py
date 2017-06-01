@@ -11,31 +11,6 @@ response = client.search(
     body={
 	  "query": {
 	    "filtered": {
-	      "query": {
-	        "range" : {
-	            "timestamp" : {
-	                "gte" : "now-5m"
-	            }
-	        }
-	      },
-	      "filter" : {
-	            "bool" : {
-	                "must" : [
-	                    { "term" : { "SourceNSG" : "{0}".format(SourceNSG) } }, 
-	                    { "term" : { "SrcUplink" : "{0}".format(SrcUplink) } } 
-	                ]
-	            }
-	        }
-	    }
-	  }
-	}
-)
-
-response = client.search(
-    index="nuage_dpi_probestats",
-    body={
-	  "query": {
-	    "filtered": {
 	      "filter" : {
 	            "bool" : {
 	                "must" : [

@@ -21,19 +21,14 @@ response = client.search(
 	        }
 	    }
 	  },
-	  "size": 0,
 	  "aggs": {
 	    "group_by_AppID": {
 	      "terms": {
 	        "field": "AppID.keyword"
 	      },
-	      "aggs": {
-	        "average_TotalMB": {
-	          "avg": {
-	            "field": "TotalMB"
-	          }
-	        }
-	      }
+	      "aggs" : {
+		    "hat_TotalMB" : { "sum" : { "field" : "TotalMB" } }
+		  }
 	    }
 	  }
 	}

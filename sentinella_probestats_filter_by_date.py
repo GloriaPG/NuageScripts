@@ -20,6 +20,10 @@ response = client.search(
 	                "gte" : "now-5m"
 	            }
 	        }
+	        "term" : {
+		        "SourceNSG" : "nsg-branch1-2",
+		        "SrcUplink" : "port1"
+		    }
 	    }
     }
 )

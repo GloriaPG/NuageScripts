@@ -36,16 +36,16 @@ response = client.search(
                 "interval" : "{0}".format(interval)
             },
             "aggs": {
-		        "MonitorPayload": {
+		        "AvgJitter": {
 		          "sum": {
-		            "field": "MonitorPayload"
+		            "field": "AvgJitter"
 		          }
 		        }
 		    }
         },
 	    "avg_interval_payload": {
 	      "avg_bucket": {
-	        "buckets_path": "probes_peer_interval>MonitorPayload" 
+	        "buckets_path": "probes_peer_interval>AvgJitter" 
 	      }
 	    }
       },

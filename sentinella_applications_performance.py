@@ -11,13 +11,6 @@ response = client.search(
     body={
 	  "query": {
 	    "filtered": {
-	      "query": {
-	        "range" : {
-	            "timestamp" : {
-	                "gte" : "now-5m"
-	            }
-	        }
-	      },
 	      "filter" : {
 	            "bool" : {
 	                "must" : [
@@ -27,7 +20,21 @@ response = client.search(
 	            }
 	        }
 	    }
-	  }
+	  },
+	  "aggs": {
+        "group_by_AppID": {
+          "terms": {
+            "field": "AppID.keyword"
+          },
+          "aggs": {
+            "average_TotalMB": {
+              "avg": {
+                "field": "TotalMB"
+              }
+            }
+          }
+        }
+      }
 	}
 )
 

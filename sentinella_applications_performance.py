@@ -21,20 +21,21 @@ response = client.search(
 	        }
 	    }
 	  },
+	  "size": 0,
 	  "aggs": {
-        "group_by_AppID": {
-          "terms": {
-            "field": "AppID.keyword"
-          },
-          "aggs": {
-            "average_TotalMB": {
-              "avg": {
-                "field": "TotalMB"
-              }
-            }
-          }
-        }
-      }
+	    "group_by_AppID": {
+	      "terms": {
+	        "field": "AppID.keyword"
+	      },
+	      "aggs": {
+	        "average_TotalMB": {
+	          "avg": {
+	            "field": "TotalMB"
+	          }
+	        }
+	      }
+	    }
+	  }
 	}
 )
 

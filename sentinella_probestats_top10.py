@@ -36,6 +36,9 @@ response = client.search(
     body={
 	  "query": {
 	    "filtered": {
+	      "query": {
+	        "sort": { "timestamp": { "order": "desc" }}
+	      },
 	      "filter" : {
 	            "bool" : {
 	                "must" : [

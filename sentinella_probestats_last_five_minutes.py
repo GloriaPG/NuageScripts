@@ -30,22 +30,22 @@ response = client.search(
 	    }
 	  },
 	  "aggs" : {
-        "pronbes_peer_interval" : {
+        "probes_peer_interval" : {
             "date_histogram" : {
                 "field" : "timestamp",
                 "interval" : "{0}".format(interval)
-            }
+            },
+            "aggs": {
+		        "MonitorPayload": {
+		          "sum": {
+		            "field": "MonitorPayload"
+		          }
+		        }
+		    }
         },
-        "aggs": {
-	        "MonitorPayload": {
-	          "sum": {
-	            "field": "MonitorPayload"
-	          }
-	        }
-	      },
 	    "avg_interval_payload": {
 	      "avg_bucket": {
-	        "buckets_path": "pronbes_peer_interval>MonitorPayload" 
+	        "buckets_path": "probes_peer_interval>MonitorPayload" 
 	      }
 	    }
       },

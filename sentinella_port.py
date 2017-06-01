@@ -31,10 +31,10 @@ response = client.search(
 	      "5":{
 	         "filters":{
 	            "filters":{
-	               "SrcUplink":{
+	               "SourceNSG":{
 	                  "query":{
 	                     "term":{
-	                        "SrcUplink":"{0}".format(SrcUplink)
+	                        "SourceNSG":"{0}".format(SourceNSG)
 	                     }
 	                  }
 	               }
@@ -44,10 +44,10 @@ response = client.search(
 	            "4":{
 	               "filters":{
 	                  "filters":{
-	                     "SourceNSG":{
+	                     "SrcUplink":{
 	                        "query":{
 	                           "term":{
-	                              "SourceNSG":"{0}".format(SourceNSG)
+	                              "SrcUplink":"{0}".format(SrcUplink)
 	                           }
 	                        }
 	                     }

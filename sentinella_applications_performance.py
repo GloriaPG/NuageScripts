@@ -22,12 +22,23 @@ response = client.search(
 	    }
 	  },
 	  "aggs": {
-	    "group_by_AppID": {
+	    "by_AppID": {
 	      "terms": {
 	        "field": "AppID"
+	      },
+	      "aggs": {
+	        "total_bytes": {
+	          "sum": {
+	            "field": "TotalBytesCount"
+	          }
+	        },
+	        "total_mb": {
+	          "sum": {
+	            "field": "TotalMB"
+	          }
+	        }
 	      }
 	    }
-	  }
 	}
 )
 

@@ -5,6 +5,7 @@ client = Elasticsearch(['192.168.0.24:9200'])
 
 SourceNSG = "nsg-branch1-2"
 SrcUplink = "port2"
+interval  = "second" # year, quarter, month, week, day, hour, minute, second
 
 response = client.search(
     index="nuage_dpi_probestats",
@@ -27,7 +28,15 @@ response = client.search(
 	            }
 	        }
 	    }
-	  }
+	  },
+	  "aggs" : {
+        "probestats_over_time" : {
+            "date_histogram" : {
+                "field" : "timestamp",
+                "interval" : "{0}".format(interval)
+            }
+        }
+      }
 	}
 )
 

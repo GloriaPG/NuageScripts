@@ -17,8 +17,7 @@ response = client.search(
 	    "query": {
 	        "range" : {
 	            "timestamp" : {
-	                "gte" : "{0}".format(epochtime_less_five_minutes),
-	                "lte": "{0}".format(epochtime_lte)
+	                "gt" : "now-5m"
 	            }
 	        }
 	    }

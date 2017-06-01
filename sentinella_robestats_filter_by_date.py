@@ -5,26 +5,23 @@ from datetime import datetime, timedelta
 
 client = Elasticsearch(['192.168.0.24:9200'])
 
-start = datetime.now() - timedelta(hours=24)
-end = datetime.now()
-
-start = int(start.strftime("%s")) * 1000
-end  = int(end.strftime("%s")) * 1000
-
-
+less_five_minutes = datetime.now() - timedelta(minutes=15)
 
 response = client.search(
-    index="nuage_dpi_flowstats-2017-05-31",
-    body={ "sort":[ { "timestamp":{ "order":"desc" } } ], "query":{ "bool":{ "should":[ { "bool":{ "must":[ { "term":{ "SourceNSG":"nsg-branch1" } }, { "term":{ "DestinationNSG":"nsg-branch2" } }, ] } } ] } } }
+    index="nuage_dpi_probestats",
+    body={
+	    "query": {
+	        "range" : {
+	            "timestamp" : {
+	                "gte" : "2017-05-31 18:49:32.365950",
+	            }
+	        }
+	    }
+    }
 )
-
-for hit in response['hits']['hits']:
-    print '*' * 1000
-    print hit
- 
-
+print json.dumps(response, indent=4, sort_keys=True)
 
 URL = 'http://192.168.0.24:9200'
 
 request_api= requests.get(URL  + "/nuage_dpi_probestats-2017-05-31/_search?pretty")
-print json.dumps(request_api.json(), indent=4, sort_keys=True)
+#print json.dumps(request_api.json(), indent=4, sort_keys=True)

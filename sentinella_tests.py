@@ -106,8 +106,10 @@ def cafectavba(csproot):
                     #print nsg_port
                     ports_data.append(nsg_port)
                     for stats in np.statistics.get():
-                        print stats.stats_data +"\n"
-                        print stats.number_of_data_points + "\n"
+                        print stats.stats_data
+                        print "\n"
+                        print stats.number_of_data_points
+                        print "\n"
 
                 nsg = {
                     "name": p.name,

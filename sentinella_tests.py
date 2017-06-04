@@ -14,7 +14,6 @@ import logging
 from vspk.utils import set_log_level
 
 # Auth vars
-"""
 vsd_ip = '147.75.69.37'
 api_url = "https://vsd1.sdn40r8.lab:8443"
 username = "csproot"
@@ -26,7 +25,7 @@ api_url = "https://192.168.0.20:8443"
 username = "csproot"
 password = "csproot"
 enterprise = "csp"
-
+"""
 
 def setup_logging():
     pass
@@ -86,7 +85,7 @@ def cafectavba(csproot):
         nsg_branch_up = 0
         nsg_branch_dow = 0
         nsgs = []
-
+        
         for g in enterprise.ns_redundant_gateway_groups.get(filter='ID is "79ad6616-3e75-4d98-b80f-efea2997d17a"'):
             for p in g.ns_gateways.get():
                 if p.bootstrap_status != "ACTIVE":
@@ -95,6 +94,12 @@ def cafectavba(csproot):
                     nsg_branch_up = nsg_branch_up +1
                 ports_data = []
                 for np in p.ns_ports.get():
+                    print "danos de ns_port"
+                    print np.physical_name
+                    print np.external_id
+                    print np.physical_name
+                    print np.user_mnemonic
+                    print np.associated_redundant_port_id
                     nsg_port = {
                         "id": np.id,
                         "name": np.name,
@@ -105,11 +110,6 @@ def cafectavba(csproot):
                     }
                     #print nsg_port
                     ports_data.append(nsg_port)
-                    for stats in np.statistics.get():
-                        print stats.stats_data
-                        print "\n"
-                        print stats.number_of_data_points
-                        print "\n"
 
                 nsg = {
                     "name": p.name,

@@ -12,15 +12,20 @@ np = {"id":"9d495bdc-e545-403d-9bd0-11f279d8e028"}
 response = client.search(
     index="nuage_dpi_flowstats",
     body={
-      "query": {
-        "filtered": {
-          "filter": {
-            "term": {
-              "vportId": "9d495bdc-e545-403d-9bd0-11f279d8e028"
-            }
-          }
-        }
-      },
+	    "query": {
+	    "filtered": {
+	      "query": {
+	        "match": {
+	          "text": "9d495bdc-e545-403d-9bd0-11f279d8e028"
+	        }
+	      },
+	      "filter": {
+	        "term": {
+	          "vportId": "9d495bdc-e545-403d-9bd0-11f279d8e028"
+	        }
+	      }
+	    }
+	  },
 	  "sort" :[
 	    {"timestamp" : {"order" : "desc"}}
 	  ],

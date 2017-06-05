@@ -85,7 +85,9 @@ def cafectavba(csproot):
         nsg_branch_up = 0
         nsg_branch_dow = 0
         nsgs = []
-        
+        for alarm in enterprise.alarms.get():
+            print "jejejej"
+            print alarm.name
         for g in enterprise.ns_redundant_gateway_groups.get(filter='ID is "79ad6616-3e75-4d98-b80f-efea2997d17a"'):
             for p in g.ns_gateways.get():
                 if p.bootstrap_status != "ACTIVE":
@@ -94,12 +96,6 @@ def cafectavba(csproot):
                     nsg_branch_up = nsg_branch_up +1
                 ports_data = []
                 for np in p.ns_ports.get():
-                    print "danos de ns_port"
-                    print np.physical_name
-                    print np.external_id
-                    print np.physical_name
-                    print np.user_mnemonic
-                    print np.associated_redundant_port_id
                     nsg_port = {
                         "id": np.id,
                         "name": np.name,
@@ -118,7 +114,7 @@ def cafectavba(csproot):
                     "memory_usage" : 10.0,
                     "ports" : ports_data
                 }
-                print nsg
+
                 nsgs.append(nsg)
         
         response['nsg-branch-dow'] = nsg_branch_dow
